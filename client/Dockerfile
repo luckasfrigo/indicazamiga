@@ -3,9 +3,7 @@ FROM node:8.11.4
 RUN mkdir /app
 WORKDIR /app
 
-COPY ./package.json .
-RUN yarn
-
 COPY . .
+RUN yarn build
 
-CMD ["yarn", "start"]
+CMD ["yarn", "serve", "-s", "build", "-p", "3000"]
