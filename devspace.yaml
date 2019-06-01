@@ -34,6 +34,9 @@ deployments:
       ports:
       - port: 3000
 dev:
+  overrideImages:
+    - name: default
+      dockerfile: ./client/Dockerfile.dev
   ports:
   - labelSelector:
       app.kubernetes.io/component: indicazamiga
