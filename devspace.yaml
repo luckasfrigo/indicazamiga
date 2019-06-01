@@ -15,6 +15,10 @@ deployments:
   component:
     containers:
     - image: dscr.io/${DEVSPACE_USERNAME}/indicazamiga-server
+      resources:
+        limits:
+          cpu: 200m
+          memory: 300Mi
     service:
       ports:
       - port: 9000
@@ -25,7 +29,7 @@ deployments:
       resources:
         limits:
           cpu: 200m
-          memory: 500Mi
+          memory: 300Mi
     service:
       ports:
       - port: 3000
