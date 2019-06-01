@@ -1,0 +1,50 @@
+version: v1beta2
+images:
+  default:
+    image: dscr.io/${DEVSPACE_USERNAME}/indicazamiga-client
+    dockerfile: ./client/Dockerfile
+    context: ./client
+    createPullSecret: true
+  server:
+    image: dscr.io/${DEVSPACE_USERNAME}/indicazamiga-server
+    dockerfile: ./server/Dockerfile
+    context: ./server
+    createPullSecret: true
+deployments:
+- name: server
+  component:
+    containers:
+    - image: dscr.io/${DEVSPACE_USERNAME}/indicazamiga-server
+    service:
+      ports:
+      - port: 9000
+- name: indicazamiga
+  component:
+    containers:
+    - image: dscr.io/${DEVSPACE_USERNAME}/indicazamiga-client
+      resources:
+        limits:
+          cpu: 200m
+          memory: 500Mi
+    service:
+      ports:
+      - port: 3000
+dev:
+  ports:
+  - labelSelector:
+      app.kubernetes.io/component: indicazamiga
+    forward:
+    - port: 3000
+  - labelSelector:
+      app.kubernetes.io/component: server
+    forward:
+    - port: 9000
+  sync:
+  - labelSelector:
+      app.kubernetes.io/component: indicazamiga
+    localSubPath: ./client
+    containerPath: /app
+  - labelSelector:
+      app.kubernetes.io/component: server
+    localSubPath: ./server
+    containerPath: /app
