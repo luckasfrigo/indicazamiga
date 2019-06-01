@@ -3,12 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var cors = require("cors");
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var testRouter = require('./routes/test');
 
 var app = express();
+
+//Hot reload for dev env, must comment lines once started
+//var reload = require('express-reload');
+//app.use(reload(path.join(__dirname, 'app.js')));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
