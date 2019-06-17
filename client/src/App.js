@@ -1,34 +1,18 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+import blink from './assets/blink.gif'
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { apiResponse: "" };
-  }
-
-  callAPI() {
-    fetch("http://localhost:9000/test")
-      .then(res => res.text())
-      .then(res => this.setState({ apiResponse: res }));
-  }
-
-  componentWillMount() {
-    this.callAPI();
+export default class App extends Component {
+  
+  state = {
+    loading: true,
   }
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React {process.env.REACT_APP_SERVER_URL}</h2>
-        </div>
-        <p className="App-intro">{this.state.apiResponse}</p>
+      <div className='wrapper'>
+        <img src={blink} alt="Indicazamiga" className="logo" />
       </div>
-    );
+    )
   }
 }
-
-export default App;
