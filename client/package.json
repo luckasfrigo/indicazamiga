@@ -12,7 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "REACT_APP_SERVER_URL=http://localhost:9000/ react-scripts start",
+    "start": "HTTPS=true REACT_APP_SERVER_URL=https://localhost:9000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
