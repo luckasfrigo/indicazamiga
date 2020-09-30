@@ -10,11 +10,16 @@
     "serve": "^11.0.1",
     "socket.io-client": "^2.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
+  },
   "scripts": {
     "start": "HTTPS=true REACT_APP_SERVER_URL=https://localhost:9000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "homepage": "http://luckasfrigo.github.io/indicazamiga"
 }
